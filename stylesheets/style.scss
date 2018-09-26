@@ -1,90 +1,192 @@
-@import "bourbon";
+// Base Colors
+$shade-10: rgb(26, 56, 75) !default;
+$shade-1: #d7dcdf !default;
+$shade-0: #fff !default;
+$colour: rgb(19, 121, 189) !default;
 
-// Settings
-$slider-track--color--default: #CCC;
-$slider-track--color--start: #1ABC9C;
-$slider-track--color--middle: #F1C40F;
-$slider-track--color--end: #E74C3C;
-$slider-track--radius: 10px;
-$slider-track--height: 14px;
-$slider-track--border-width: 0;
-$slider-handle--size: 28px;
-$slider-handle--dot--size: $slider-handle--size - 10px;
 
-%track--defaults {
-  height: $slider-track--height;
-  border: {
-    radius: $slider-track--radius;
-    width: $slider-track--border-width;
-  }
+.range-slider {
+  margin: 4px 0 0 0;
 }
 
-// Layout
+// Range Slider
+$range-width: 60% !default;
 
-#slider-container {
-  width: 80%;
-  height: 80px;
-  // @include box-sizing(border-box);
-  position: relative;
-  top: 50%;
-  margin: 0 auto;
-  text-align: center;
-  background: #FFF;
+$range-handle-color: $shade-10 !default;
+$range-handle-color-hover: $colour !default;
+$range-handle-size: 22px !default;
+
+$range-track-color: $shade-1 !default;
+$range-track-height: 15px !default;
+
+$range-label-color: $shade-10 !default;
+$range-label-width: 60px !default;
+
+.range-slider {
+  width: $range-width;
+}
+
+.range-slider__range {
+  -webkit-appearance: none;
+  width: calc(100% - (#{$range-label-width + 13px}));
+  height: $range-track-height;
   border-radius: 5px;
-  padding: 35px 40px 30px 40px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  background: $range-track-color;
+  background: linear-gradient(to right, green 0%, yellow 50%, red 100%);
+  outline: none;
+  padding: 0;
+  margin: 0;
+
+  // Range Handle
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: $range-handle-size;
+    height: $range-handle-size;
+    border-radius: 50%;
+    background: $range-handle-color;
+    cursor: pointer;
+    transition: background .15s ease-in-out;
+
+    &:hover {
+      background: $range-handle-color-hover;
+    }
+  }
+
+  &:active::-webkit-slider-thumb {
+    background: $range-handle-color-hover;
+  }
+
+  &::-moz-range-thumb {
+    width: $range-handle-size;
+    height: $range-handle-size;
+    border: 0;
+    border-radius: 50%;
+    background: $range-handle-color;
+    cursor: pointer;
+    transition: background .15s ease-in-out;
+
+    &:hover {
+      background: $range-handle-color-hover;
+    }
+  }
+
+  &:active::-moz-range-thumb {
+    background: $range-handle-color-hover;
+  }
 }
 
-// Slider widget
-.ui-slider {
-  * { outline: none; }
-  @extend %track--defaults;
-  
-  // @include linear-gradient(to right, $slider-track--color--start 0%, $slider-track--color--middle 50%, $slider-track--color--end 100%);
-  
-  .slider-range-inverse {
-    @extend %track--defaults;
-    background: $slider-track--color--default;
-    position: absolute;
-    right: 0;
-  }
-  
-  .ui-slider-range {
-    @extend %track--defaults;
-    background: transparent; 
-  }
-  
-  .ui-slider-handle {
-    width: $slider-handle--size;
-    height: $slider-handle--size;
+
+// Range Label
+.round-slider {
+  display: inline-block;
+  position: relative;
+  width: $range-label-width;
+  color: $shade-0;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 3px;
+  background: $range-label-color;
+  padding: 5px 10px;
+  margin-left: 8px;
+}
+
+
+// Firefox Overrides
+::-moz-range-track {
+    background: $range-track-color;
+  background: linear-gradient(to right, green 0%, yellow 50%, red 100%);
+    border: 0;
+}
+
+input::-moz-focus-inner,
+input::-moz-focus-outer { 
+  border: 0; 
+}
+
+
+// Round Slider
+.round-slider {
+  -webkit-appearance: none;
+  width: calc(100% - (#{$range-label-width + 13px}));
+  height: $range-track-height;
+  border-radius: 5px;
+  background: $range-track-color;
+  background: -webkit-gradient(
+      linear,
+      left top,
+      right top,
+      color-stop(0.15, #00a3e3),
+      color-stop(0.15, #e9ebf0)
+  );
+  outline: none;
+  padding: 0;
+  margin: 0;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+
+  // Range Handle
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: $range-handle-size;
+    height: $range-handle-size;
+    border-radius: 50%;
+    border: 2px solid white;
+    background: #00a3e3;
     cursor: pointer;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.4);
-    background: #FFF;
-    top: -($slider-handle--size - $slider-track--height) / 2;
-    border: {
-      radius: 50%;
-      width: 0;
+    transition: background .15s ease-in-out;
+
+    &:hover {
+      opacity: 1;
     }
-    
-    &:active { box-shadow: 0 3px 20px rgba(0,0,0,0.5); }
-        
-    .dot {
-      width: $slider-handle--dot--size;
-      height: $slider-handle--dot--size;
-      border-radius: 50%;
-      position: absolute;
-      top: ($slider-handle--size - $slider-handle--dot--size) / 2;
-      left: ($slider-handle--size - $slider-handle--dot--size) / 2;
-      background: transparent;
-      overflow: hidden;
-      
-      .handle-track {
-        display: block;
-        height: $slider-handle--dot--size;
-        // @include linear-gradient(to right, $slider-track--color--start 0%, $slider-track--color--middle 50%, $slider-track--color--end 100%);
-        position: absolute;
-        padding-right: $slider-handle--dot--size;
-      }
+  }
+
+  &:active::-webkit-slider-thumb {
+    opacity: 1;
+  }
+
+  &::-moz-range-thumb {
+    width: $range-handle-size;
+    height: $range-handle-size;
+    border: 0;
+    border-radius: 50%;
+    background: $range-handle-color;
+    cursor: pointer;
+    transition: background .15s ease-in-out;
+
+    &:hover {
+      opacity: 1;
     }
+  }
+
+  &:active::-moz-range-thumb {
+    opacity: 1;
+  }
+
+}
+.roundslider {
+  padding-top: 5px !important;
+  font-size: 0.85em;
+  & .label p{
+    padding-left: 30px;
+  }
+
+  & .value{
+
+    & input{
+      height: 25px;
+      width: 45px;
+      padding: 2px;
+      text-align: right; 
+      border: 1px solid #DCDEE2;
+      border-radius: 2px;
+    }
+    & p{
+      display: inline;
+    }
+  }
+  & hr{
+    margin: 0;
   }
 }
+

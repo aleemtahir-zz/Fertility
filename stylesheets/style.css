@@ -1,53 +1,143 @@
-.ui-slider, .ui-slider .slider-range-inverse, .ui-slider .ui-slider-range {
-  height: 14px;
-  border-radius: 10px;
-  border-width: 0; }
+.range-slider {
+  margin: 4px 0 0 0;
+}
 
-#slider-container {
-  width: 80%;
-  height: 80px;
-  position: relative;
-  top: 50%;
-  margin: 0 auto;
-  text-align: center;
-  background: #FFF;
+.range-slider {
+  width: 60%;
+}
+
+.range-slider__range {
+  -webkit-appearance: none;
+  width: calc(100% - (73px));
+  height: 15px;
   border-radius: 5px;
-  padding: 35px 40px 30px 40px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); }
-
-.ui-slider * {
-  outline: none; }
-
-.ui-slider .slider-range-inverse {
-  background: #CCC;
-  position: absolute;
-  right: 0; }
-
-.ui-slider .ui-slider-range {
-  background: transparent; }
-
-.ui-slider .ui-slider-handle {
-  width: 28px;
-  height: 28px;
-  cursor: pointer;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.4);
-  background: #FFF;
-  top: -7px;
+  background: #d7dcdf;
+  background: linear-gradient(to right, green 0%, yellow 50%, red 100%);
+  outline: none;
+  padding: 0;
+  margin: 0;
+}
+.range-slider__range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
-  border-width: 0; }
-  .ui-slider .ui-slider-handle:active {
-    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.5); }
-  .ui-slider .ui-slider-handle .dot {
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    background: transparent;
-    overflow: hidden; }
-    .ui-slider .ui-slider-handle .dot .handle-track {
-      display: block;
-      height: 18px;
-      position: absolute;
-      padding-right: 18px; }
+  background: #1a384b;
+  cursor: pointer;
+  transition: background 0.15s ease-in-out;
+}
+.range-slider__range::-webkit-slider-thumb:hover {
+  background: #1379bd;
+}
+.range-slider__range:active::-webkit-slider-thumb {
+  background: #1379bd;
+}
+.range-slider__range::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border: 0;
+  border-radius: 50%;
+  background: #1a384b;
+  cursor: pointer;
+  transition: background 0.15s ease-in-out;
+}
+.range-slider__range::-moz-range-thumb:hover {
+  background: #1379bd;
+}
+.range-slider__range:active::-moz-range-thumb {
+  background: #1379bd;
+}
+
+.round-slider {
+  display: inline-block;
+  position: relative;
+  width: 60px;
+  color: #fff;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 3px;
+  background: #1a384b;
+  padding: 5px 10px;
+  margin-left: 8px;
+}
+
+::-moz-range-track {
+  background: #d7dcdf;
+  background: linear-gradient(to right, green 0%, yellow 50%, red 100%);
+  border: 0;
+}
+
+input::-moz-focus-inner,
+input::-moz-focus-outer {
+  border: 0;
+}
+
+.round-slider {
+  -webkit-appearance: none;
+  width: calc(100% - (73px));
+  height: 15px;
+  border-radius: 5px;
+  background: #d7dcdf;
+  /* background: -webkit-gradient(linear, left top, right top, color-stop(0.15, #00a3e3), color-stop(0.15, #e9ebf0)); */
+  outline: none;
+  padding: 0;
+  margin: 0;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+}
+.round-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid white;
+  background: #00a3e3;
+  cursor: pointer;
+  transition: background 0.15s ease-in-out;
+}
+.round-slider::-webkit-slider-thumb:hover {
+  opacity: 1;
+}
+.round-slider:active::-webkit-slider-thumb {
+  opacity: 1;
+}
+.round-slider::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border: 0;
+  border-radius: 50%;
+  background: #1a384b;
+  cursor: pointer;
+  transition: background 0.15s ease-in-out;
+}
+.round-slider::-moz-range-thumb:hover {
+  opacity: 1;
+}
+.round-slider:active::-moz-range-thumb {
+  opacity: 1;
+}
+
+.roundslider {
+  padding-top: 5px !important;
+  font-size: 0.85em;
+}
+.roundslider .label p {
+  padding-left: 30px;
+}
+.roundslider .value input {
+  height: 25px;
+  width: 45px;
+  padding: 2px;
+  text-align: right;
+  border: 1px solid #DCDEE2;
+  border-radius: 2px;
+}
+.roundslider .value p {
+  display: inline;
+}
+.roundslider hr {
+  margin: 0;
+}
+
+/*# sourceMappingURL=style.css.map */

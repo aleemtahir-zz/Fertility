@@ -1,29 +1,47 @@
-(function() {
-    var update_handle_track_pos;
-  
-    update_handle_track_pos = function(slider, ui_handle_pos) {
-      var handle_track_xoffset, slider_range_inverse_width;
-      handle_track_xoffset = -((ui_handle_pos / 100) * slider.clientWidth);
-      $(slider).find(".handle-track").css("left", handle_track_xoffset);
-      slider_range_inverse_width = (100 - ui_handle_pos) + "%";
-      return $(slider).find(".slider-range-inverse").css("width", slider_range_inverse_width);
-    };
-  
-    $("#js-slider").slider({
-      range: "min",
-      max: 100,
-      value: 50,
-      create: function(event, ui) {
-        var slider;
-        slider = $(event.target);
-        slider.find('.ui-slider-handle').append('<span class="dot"><span class="handle-track"></span></span>');
-        slider.prepend('<div class="slider-range-inverse"></div>');
-        slider.find(".handle-track").css("width", event.target.clientWidth);
-        return update_handle_track_pos(event.target, $(this).slider("value"));
-      },
-      slide: function(event, ui) {
-        return update_handle_track_pos(event.target, ui.value);
-      }
+var rangeSlider = function(){
+  var slider = $('.range-slider'),
+      range = $('.range-slider__range'),
+      value = $('.range-slider__value');
+    
+  slider.each(function(){
+
+    value.each(function(){
+      var value = $(this).prev().attr('value');
+      $(this).html(value);
     });
-  
-  }).call(this);
+
+    range.on('input', function(){
+      $(this).next(value).html(this.value);
+    });
+  });
+};
+
+rangeSlider();
+
+
+// Half Filled Color Slider - round-slider
+$(function(){
+
+  // on load
+  $('.round-slider').each(function () {
+    var val = ($(this).val() - $(this).attr('min')) / ($(this).attr('max') - $(this).attr('min'));
+    console.log(val);
+    $(this).css('background-image',
+                '-webkit-gradient(linear, left top, right top, '
+                + 'color-stop(' + val + ', #00a3e3), '
+                + 'color-stop(' + val + ', #e9ebf0)'
+                + ')'
+                );
+  });
+
+  $('.round-slider').change(function () {
+    var val = ($(this).val() - $(this).attr('min')) / ($(this).attr('max') - $(this).attr('min'));
+    console.log(val);
+    $(this).css('background-image',
+                '-webkit-gradient(linear, left top, right top, '
+                + 'color-stop(' + val + ', #00a3e3), '
+                + 'color-stop(' + val + ', #e9ebf0)'
+                + ')'
+                );
+  });
+});
